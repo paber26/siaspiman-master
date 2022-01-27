@@ -7,7 +7,7 @@
             <!-- <i class="fas fa-bullhorn"></i> -->
             <img class="img-profile rounded-circle" width="50px" src="<?= base_url('assets/img/profile/dpm.png') ?>">
         </div>
-        <div class="sidebar-brand-text mx-3">SiAspiman</div>
+        <div class="sidebar-brand-text mx-3">Siman</div>
     </a>
 
     <!-- Divider -->
@@ -60,9 +60,16 @@
             <?php endforeach; ?>
 
             <!-- Divider -->
-            <hr class="sidebar-divider mt-3">
 
         <?php endforeach; ?>
+
+        <li class="nav-item">
+            <a class="nav-link pb-0" href="<?= base_url('user/anggaran'); ?>">
+                <i class="fas fa-fw fa-sim-card"></i>
+                <span>Anggaran IMAPOLSTAT</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider mt-3">
 
 
 

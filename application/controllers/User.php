@@ -44,9 +44,9 @@ class User extends CI_Controller
             $kelas = $this->input->post('kelas');
             $nohp = $this->input->post('nohp');
             $provider = $this->input->post('provider');
-            if($provider == ""){
+            if ($provider == "") {
                 $provider = "none";
-            }else{
+            } else {
                 $provider =  $provider;
             }
 
@@ -71,11 +71,13 @@ class User extends CI_Controller
                 } else {
                     $error = array('error' => $this->upload->display_errors());
 
-                    $this->session->set_flashdata('message', 
-                    '<div class="alert alert-danger" role="alert">
+                    $this->session->set_flashdata(
+                        'message',
+                        '<div class="alert alert-danger" role="alert">
                     <p class="mb-0">Failed to update your profile!</p>
-                    <p class="mb-0">'.$error['error'].'</p>
-                    </div>');
+                    <p class="mb-0">' . $error['error'] . '</p>
+                    </div>'
+                    );
 
                     redirect('user');
                 }
@@ -147,13 +149,48 @@ class User extends CI_Controller
         }
     }
 
+    public function anggaran()
+    {
+        $data['title'] = 'Anggaran IMAPOLSTAT';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        // if ($this->form_validation->run() == false) {
+        //     $this->load->view('templates/header', $data);
+        //     $this->load->view('templates/sidebar', $data);
+        //     $this->load->view('templates/topbar', $data);
+        //     $this->load->view('user/aspirasi', $data);
+        //     $this->load->view('templates/footer');
+        // } else {
+        //     $dari = $this->input->post('dari', true);
+        //     $untuk = $this->input->post('untuk', true);
+        //     $isi = $this->input->post('isi', true);
+
+        //     $data = [
+        //         'nim' => $data['user']['nim'],
+        //         'dari' => $dari,
+        //         'untuk' => $untuk,
+        //         'date_created' => time(),
+        //         'isi' => $isi
+        //     ];
+        //     $this->db->insert('sambat', $data);
+        //     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Sambatan kamu berhasil terkirim
+        //     </div>');
+        //     redirect('user/aspirasi');
+        // }
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/anggaran', $data);
+        $this->load->view('templates/footer');
+    }
 
     public function laporkuota()
     {
         $data['title'] = 'Pelaporan Kuota';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['kuota'] = $this->db->get_where('kuota', ['nim' => $data['user']['nim'] ] )->result_array();
-        
+        $data['kuota'] = $this->db->get_where('kuota', ['nim' => $data['user']['nim']])->result_array();
+
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('nim', 'NIM', 'required|trim');
         $this->form_validation->set_rules('kelas', 'Kelas', 'required|trim');
