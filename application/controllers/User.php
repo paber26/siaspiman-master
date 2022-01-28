@@ -154,34 +154,70 @@ class User extends CI_Controller
         $data['title'] = 'Anggaran IMAPOLSTAT';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        // if ($this->form_validation->run() == false) {
-        //     $this->load->view('templates/header', $data);
-        //     $this->load->view('templates/sidebar', $data);
-        //     $this->load->view('templates/topbar', $data);
-        //     $this->load->view('user/aspirasi', $data);
-        //     $this->load->view('templates/footer');
-        // } else {
-        //     $dari = $this->input->post('dari', true);
-        //     $untuk = $this->input->post('untuk', true);
-        //     $isi = $this->input->post('isi', true);
-
-        //     $data = [
-        //         'nim' => $data['user']['nim'],
-        //         'dari' => $dari,
-        //         'untuk' => $untuk,
-        //         'date_created' => time(),
-        //         'isi' => $isi
-        //     ];
-        //     $this->db->insert('sambat', $data);
-        //     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Sambatan kamu berhasil terkirim
-        //     </div>');
-        //     redirect('user/aspirasi');
-        // }
-
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('user/anggaran', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function anggaranpengajuan()
+    {
+        $data['title'] = 'Pengajuan Anggaran IMAPOLSTAT';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/anggaran/pengajuan', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function anggaranpenganggaran()
+    {
+        $data['title'] = 'Penganggaran Anggaran IMAPOLSTAT';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/anggaran/penganggaran', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function anggaranukmdivisi()
+    {
+        $data['title'] = 'UKMM/Divisi IMAPOLSTAT';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/anggaran/ukmdivisi', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function anggaranmahasiswa()
+    {
+        $data['title'] = 'Anggaran Mahasiswa IMAPOLSTAT';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/anggaran/mahasiswa', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function anggaranlaporan()
+    {
+        $data['title'] = 'Laporan IMAPOLSTAT';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/anggaran/laporan', $data);
         $this->load->view('templates/footer');
     }
 

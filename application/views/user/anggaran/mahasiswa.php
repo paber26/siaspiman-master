@@ -11,7 +11,7 @@
 
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-            Anggaran
+            Pengajuan
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="<?= base_url('user/anggaranpengajuan'); ?>">Pengajuan</a>
@@ -32,40 +32,45 @@
 
             <?= $this->session->flashdata('message'); ?>
 
-            <!-- <div class="row align-items-start">
-                <table class="table col col mx-2">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Tanggal</th>
-                            <th scope="col">Nomor</th>
-                            <th scope="col">Keterangan</th>
-                            <th scope="col">Masuk</th>
-                            <th scope="col">Keluar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row"></th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="card col col-lg-3 x-2">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Anggaran</h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Anggaran - </li>
-                        <li class="list-group-item">Realisasi - </li>
-                        <li class="list-group-item">Saldo - </li>
-                    </ul>
-                </div>
-            </div> -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">NIM</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Kelas</th>
+                        <th scope="col">Okt</th>
+                        <th scope="col">Nov</th>
+                        <th scope="col">...</th>
+                        <th scope="col">...</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>1</td>
+                        <td>2218</td>
+                        <td>Ruth</td>
+                        <td>4SI1</td>
+                        <td>Lunas</td>
+                        <td>Lunas</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>2</td>
+                        <td>2218</td>
+                        <td>Ntah</td>
+                        <td>4SI1</td>
+                        <td>Belum Lunas</td>
+                        <td>Belum Lunas</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
 
