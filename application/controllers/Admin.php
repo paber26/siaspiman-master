@@ -14,7 +14,6 @@ class Admin extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->helper('url', 'form');
-
     }
 
     public function index()
@@ -83,7 +82,7 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Access Changed!</div>');
     }
-    
+
     public function isipengumuman()
     {
         $data['title'] = 'Pengumuman';
@@ -104,10 +103,10 @@ class Admin extends CI_Controller
 
         if ($this->upload->do_upload('uploadimage')) {
             $img = $this->upload->data("file_name");
-        }else{
+        } else {
             $img = "default-img.jpg";
         }
-         
+
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -133,22 +132,23 @@ class Admin extends CI_Controller
         }
     }
 
-    public function hapuspengumuman($id){
+    public function hapuspengumuman($id)
+    {
         $img = $this->db->get_where('pengumuman', ['id' => $id])->row_array();
         if ($img['img'] != "default-img.jpg") {
             $filename = $img['img'];
             // return array_map('unlink', glob(FCPATH."assets\img\pengumuman\$filename.*"));
-            unlink('assets/img/pengumuman/'.$filename.'');
+            unlink('assets/img/pengumuman/' . $filename . '');
         }
         $this->load->model('Admin_model', 'isipengumuman');
         $this->Admin_model->hapusPengumuman($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Pengumuman berhasil dihapus</div>');
         redirect('admin/isipengumuman');
-
     }
 
-    public function isigaleri(){
+    public function isigaleri()
+    {
         $data['title'] = 'Galeri';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->db->order_by("uploadAt", "DESC");
@@ -159,7 +159,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('folder', 'folder', 'required|trim');
         // $this->form_validation->set_rules('file', 'File', 'required|trim');
 
-         
+
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -171,7 +171,7 @@ class Admin extends CI_Controller
         } else {
             $folder = $this->input->post('folder', true);
 
-            $config['upload_path'] = './assets/img/galeri/'.$folder.'/';
+            $config['upload_path'] = './assets/img/galeri/' . $folder . '/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = 2048; //2MB
             $config['max_width'] = 1500;
@@ -181,10 +181,10 @@ class Admin extends CI_Controller
 
             if ($this->upload->do_upload('uploadimg')) {
                 $img = $this->upload->data("file_name");
-            }else{
+            } else {
                 $img = "default-img.jpg";
             }
-            
+
             date_default_timezone_set("Asia/Jakarta");
 
             $data = [
@@ -199,25 +199,25 @@ class Admin extends CI_Controller
             </div>');
             redirect('admin/isigaleri');
         }
-
     }
 
-    public function hapusgaleri($id){
+    public function hapusgaleri($id)
+    {
         $img = $this->db->get_where('galeri', ['id' => $id])->row_array();
         if ($img['file'] != "default-img.jpg") {
             $filename = $img['file'];
             // return array_map('unlink', glob(FCPATH."assets\img\pengumuman\$filename.*"));
-            unlink('assets/img/galeri/'.$filename.'');
+            unlink('assets/img/galeri/' . $filename . '');
         }
         $this->load->model('Admin_model', 'isigaleri');
         $this->Admin_model->hapusGaleri($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Galeri berhasil dihapus</div>');
         redirect('admin/isigaleri');
-
     }
 
-    public function isiprofil(){
+    public function isiprofil()
+    {
         $data['title'] = 'Struktur Profil';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->db->order_by("idJabatan", "ASC");
@@ -229,14 +229,13 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('nim', 'nim', 'required|trim');
         $this->form_validation->set_rules('kelas', 'kelas', 'required|trim');
 
-         
+
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('admin/isiprofil', $data);
             $this->load->view('templates/footer');
-
         } else {
             $nama = $this->input->post('nama', true);
             $nim = $this->input->post('nim', true);
@@ -246,29 +245,21 @@ class Admin extends CI_Controller
 
             if ($idJbt == 1) {
                 $jbt = 'Ketua DPM';
-            }
-            elseif($idJbt == 2){
+            } elseif ($idJbt == 2) {
                 $jbt = 'Wakil Ketua DPM';
-            }
-            elseif($idJbt == 3){
+            } elseif ($idJbt == 3) {
                 $jbt = 'Sekretaris';
-            }
-            elseif( $idJbt == 4){
+            } elseif ($idJbt == 4) {
                 $jbt = 'Bendahara';
-            }
-            elseif( $idJbt == 51){
+            } elseif ($idJbt == 51) {
                 $jbt = 'Ketua Komisi I';
-            }
-            elseif( $idJbt == 52){
+            } elseif ($idJbt == 52) {
                 $jbt = 'Ketua Komisi II';
-            }
-            elseif( $idJbt == 53){
+            } elseif ($idJbt == 53) {
                 $jbt = 'Ketua Komisi III';
-            }
-            elseif( $idJbt == 54){
+            } elseif ($idJbt == 54) {
                 $jbt = 'Ketua Komisi IV';
-            }
-            elseif( $idJbt == 60){
+            } elseif ($idJbt == 60) {
                 $jbt = 'Ketua Pubdok';
             }
 
@@ -282,11 +273,11 @@ class Admin extends CI_Controller
 
             if ($this->upload->do_upload('uploadimg')) {
                 $img = $this->upload->data("file_name");
-            }else{
+            } else {
                 $img = "default-img.png";
             }
 
-            
+
             date_default_timezone_set("Asia/Jakarta");
 
             $data = [
@@ -299,26 +290,25 @@ class Admin extends CI_Controller
             ];
             $this->db->insert('struktur', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Profil '.$jbt.' berhasil ditambahkan
+            Profil ' . $jbt . ' berhasil ditambahkan
             </div>');
             redirect('admin/isiprofil');
         }
-
     }
 
-    public function hapusprofil($id){
+    public function hapusprofil($id)
+    {
         $img = $this->db->get_where('struktur', ['id' => $id])->row_array();
         if ($img['img'] != "default-img.png") {
             $filename = $img['img'];
             // return array_map('unlink', glob(FCPATH."assets\img\pengumuman\$filename.*"));
-            unlink('assets/img/struktur/'.$filename.'');
+            unlink('assets/img/struktur/' . $filename . '');
         }
         $this->load->model('Admin_model', 'isiprofil');
         $this->Admin_model->hapusProfil($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Profil berhasil dihapus</div>');
         redirect('admin/isiprofil');
-
     }
 
     public function isiaspirasi()
@@ -348,18 +338,20 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function resetkuota(){
+    public function resetkuota()
+    {
         $this->load->model('Admin_model', 'isilaporkuota');
         $this->Admin_model->resetKuota();
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Data pelaporan kuota bulan '.date('F').' telah dihapus</div>');
+            Data pelaporan kuota bulan ' . date('F') . ' telah dihapus</div>');
         redirect('admin/isilaporkuota');
     }
 
-    public function hapusdokumen($id){
+    public function hapusdokumen($id)
+    {
         $dkmn = $this->db->get_where('arsip', ['id' => $id])->row_array();
-        unlink('assets/arsip/dokumen/'.$dkmn['file'].'');
-        
+        unlink('assets/arsip/dokumen/' . $dkmn['file'] . '');
+
         $this->db->where('id', $id);
         $this->db->delete('arsip');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -424,7 +416,7 @@ class Admin extends CI_Controller
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 2,
                 'is_active' => 1,
-                
+
             ];
             $this->db->insert('user', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -645,6 +637,4 @@ class Admin extends CI_Controller
 
         $writer->save('php://output');
     }
-
-
 }

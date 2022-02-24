@@ -31,7 +31,7 @@
                                     </button>
                                     <hr>
                                     <button type="button" onclick="open_window_sipadu()" class="btn btn-primary btn-user btn-block">
-                                    <img src="https://stis.ac.id/sipadu/mahasiswa//images/logo.png" style="width:25px; height: auto" class="mr-2"> Login with Sipadu
+                                        <img src="https://stis.ac.id/sipadu/mahasiswa//images/logo.png" style="width:25px; height: auto" class="mr-2"> Login with Sipadu
                                     </button>
                                 </form>
                                 <hr>
